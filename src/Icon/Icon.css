@@ -1,0 +1,13 @@
+.Icon {
+    margin: 0;
+    padding: 0;
+    clear: left;
+}
+
+i {
+    margin: 5px;
+}
+
+i.fa.fa-map-marker::before {
+    margin: 3px;
+}
