@@ -3,6 +3,9 @@ import '../IconText/IconText.css';
 import Icon from '../Icon/Icon.js'
 
 class IconText extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         const rel = this.props.rel;
         if (rel === "") {
