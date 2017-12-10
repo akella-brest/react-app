@@ -31,9 +31,8 @@ class App extends Component {
     }
 
     render() {
-        const icon = ['users', 'map-marker', 'envelope', 'link'];
-        const rel = ['facebook.com', '', 'mailto:akella1997@tut.by', 'vk.com/artsiom_pas_blr'];
-        const text = ['@facebook', 'Brest, Belarus', 'akella1997@tut.by', '@vk'];
+        const icons = ['users', 'map-marker', 'envelope', 'link'];
+
         return (
             <div className="App">
                     <Profile
@@ -43,11 +42,7 @@ class App extends Component {
                         information={this.state.information}
                     />
                     <Tabs />
-                    {icon.map((icon, index) => <Icon
-                        icon={icon}
-                        rel={rel[index]}
-                        text={text[index]}
-                    />)}
+                    <Icon icons={icons} />
             </div>
         );
     }
