@@ -6,12 +6,10 @@ class Icon extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listIconText: {
-                company: '',
-                location: '',
-                email: '',
-                url: ''
-            }
+            company: '',
+            location: '',
+            email: '',
+            url: ''
         }
     }
 
@@ -22,10 +20,9 @@ class Icon extends Component {
                 this.setState({
                     company: responseJson.company,
                     location: responseJson.location,
-                    email: responseJson.email,
-                    url: responseJson.blog
+                    email: <a href={responseJson.email}> {responseJson.email} </a>,
+                    url: <a href={responseJson.email}> {responseJson.blog} </a>
                 }, function () {
-
                 });
             })
     }
@@ -35,10 +32,25 @@ class Icon extends Component {
         const fullNameIcons = icons.map ((icon) => {
             return "fa fa-" + icon;
         });
+        const listIconText = [
+            this.state.company,
+            this.state.location,
+            this.state.email,
+            this.state.url
+        ];
 
         return (
             <div className="Icon">
-                <IconText icons={fullNameIcons} rel={this.props.rel} text={this.props.text} />
+                <IconText>
+                    {fullNameIcons.map ((icon, index) =>
+                        <div>
+                            <i className={icon}
+                               key={icon.toString()}>
+                            </i>
+                            {listIconText[index]}
+                        </div>
+                    )}
+                </IconText>
             </div>
         );
     }
