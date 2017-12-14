@@ -14,14 +14,18 @@ class Icon extends Component {
     }
 
     componentDidMount() {
-        return fetch('https://api.github.com/users/akella-brest')
+        return fetch('https://api.github.com/users/gaearon')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     company: responseJson.company,
                     location: responseJson.location,
-                    email: <a href={responseJson.email}> {responseJson.email} </a>,
-                    url: <a href={responseJson.email}> {responseJson.blog} </a>
+                    email: responseJson.email ?
+                        <a href={'mailto:' + responseJson.email}>{responseJson.email}</a> :
+                        'email is not visible',
+                    url: responseJson.blog ?
+                        <a href={responseJson.blog}>{responseJson.blog}</a> :
+                        'blog is not visible',
                 }, function () {
                 });
             })
@@ -32,6 +36,7 @@ class Icon extends Component {
         const fullNameIcons = icons.map ((icon) => {
             return "fa fa-" + icon;
         });
+
         const listIconText = [
             this.state.company,
             this.state.location,
@@ -41,15 +46,8 @@ class Icon extends Component {
 
         return (
             <div className="Icon">
-                <IconText>
-                    {fullNameIcons.map ((icon, index) =>
-                        <div>
-                            <i className={icon}
-                               key={icon.toString()}>
-                            </i>
-                            {listIconText[index]}
-                        </div>
-                    )}
+                <IconText texts={listIconText}>
+                    {fullNameIcons}
                 </IconText>
             </div>
         );

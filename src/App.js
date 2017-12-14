@@ -3,6 +3,7 @@ import './App.css';
 import Icon from './Icon/Icon.js';
 import Profile from './Profile/Profile.js';
 import Tabs from './Tabs/Tabs.js';
+import Edit from './Tabs/Edit/Edit.js'
 
 class App extends Component {
     constructor(props) {
@@ -11,19 +12,19 @@ class App extends Component {
             url: '',
             name: '',
             nickname: '',
-            information: ''
+            information: '',
         }
     }
 
     componentDidMount() {
-        return fetch('https://api.github.com/users/akella-brest')
+        return fetch('https://api.github.com/users/gaearon')
             .then((response) => response.json())
             .then((responseJson) => {
                 this.setState({
                     url: responseJson.avatar_url,
                     name: responseJson.name,
                     nickname: responseJson.login,
-                    information: responseJson.bio
+                    information: responseJson.bio,
                 }, function() {
                     // do something with new state
                 });
@@ -42,7 +43,7 @@ class App extends Component {
                         information={this.state.information}
                     />
                     <Tabs />
-                    <Icon icons={icons} />
+                    <Icon icons={icons}/>
             </div>
         );
     }
