@@ -1,17 +1,19 @@
-.Tabs {
-    margin: 20px 0 0 40px;
+.Tabs .Menu {
+    margin: 1.5% 15% 0 26%;
     padding: 0;
-    height: 85%;
-    float: left;
+    height: 80%;
     display: flex;
-    flex-direction: row;
+    border-bottom: 1px solid #bababa;
 }
 
-p {
-    padding: 0 10px 5px 10px;
+.Tabs p {
+    font-size: 14px;
+    padding: 0 10px 15px 10px;
     cursor: pointer;
+    color: #5c5c5c;
 }
 
-.main, .education, .contacts {
-    border-bottom: 2px solid #fe7300;
+.Tabs .main, .education, .contacts {
+    border-bottom: 2px solid #eb6700;
+    font-weight: 600;
 }

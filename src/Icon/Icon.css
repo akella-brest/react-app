@@ -1,5 +1,4 @@
 .Icon {
-    margin: 0;
     padding: 0;
     clear: left;
 }
@@ -9,5 +8,5 @@ i {
 }
 
 i.fa.fa-map-marker::before {
-    margin: 3px;
+    margin: 4px;
 }

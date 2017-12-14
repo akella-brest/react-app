@@ -1,13 +1,13 @@
 .Profile {
-    margin: 0;
-    padding: 0;
-    width: 15%;
+    width: 20%;
     display: block;
     float: left;
+    margin: auto;
+    padding: 0 0 10px 0;
 }
 
 .img {
-    width: 100%;
+    width: 120%;
     border-radius: 5%;
 }
 
