@@ -11,6 +11,8 @@
 }
 
 .Edit textarea {
-    width: 59%;
+    width: 57%;
     height: 17em;
+    border-radius: 10px;
+    padding: 10px;
 }
