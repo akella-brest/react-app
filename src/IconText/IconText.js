@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../IconText/IconText.css';
 
 class IconText extends Component {
