@@ -1,35 +1,8 @@
 import React, { Component } from 'react';
 import './Icon.css';
-import IconText from '../IconText/IconText.js'
+import IconText from '../IconText/IconText.js';
 
 class Icon extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            company: '',
-            location: '',
-            email: '',
-            url: ''
-        }
-    }
-
-    componentDidMount() {
-        return fetch('https://api.github.com/users/gaearon')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    company: responseJson.company,
-                    location: responseJson.location,
-                    email: responseJson.email ?
-                        <a href={'mailto:' + responseJson.email}>{responseJson.email}</a> :
-                        'email is not visible',
-                    url: responseJson.blog ?
-                        <a href={responseJson.blog}>{responseJson.blog}</a> :
-                        'blog is not visible',
-                }, function () {
-                });
-            })
-    }
 
     render() {
         const icons = this.props.icons;
@@ -38,10 +11,10 @@ class Icon extends Component {
         });
 
         const listIconText = [
-            this.state.company,
-            this.state.location,
-            this.state.email,
-            this.state.url
+            this.props.listIcon.company,
+            this.props.listIcon.location,
+            this.props.listIcon.email,
+            this.props.listIcon.url
         ];
 
         return (

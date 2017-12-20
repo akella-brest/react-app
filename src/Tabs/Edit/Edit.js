@@ -5,7 +5,7 @@ class Edit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isCheck: false,
+            isDisabled: true,
             text: ''
         };
 
@@ -14,24 +14,18 @@ class Edit extends Component {
     }
 
     componentDidMount() {
-        return fetch('https://api.github.com/users/gaearon')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                this.setState({
-                    text: responseJson.bio
-                }, function() {});
-            })
+        this.setState({ text: this.props.text });
     }
 
     handleClick() {
-        if (this.state.isCheck) {
+        if (this.state.isDisabled) {
             this.setState({
-                isCheck: false,
+                isDisabled: false,
                 text: this.state.value
             })
         } else {
             this.setState({
-                isCheck: true,
+                isDisabled: true,
                 text: this.state.value
             })
         }
@@ -42,7 +36,6 @@ class Edit extends Component {
     }
 
     render() {
-        if (this.state.isCheck) {
             return (
                 <div className="Edit">
                     <form>
@@ -59,32 +52,11 @@ class Edit extends Component {
                         className="textarea"
                         value={this.state.text}
                         onChange={this.handleTextChange}
-                    />
-                </div>
-            );
-        } else {
-            return (
-                <div className="Edit">
-                    <form>
-                        <label>
-                            <input
-                                name="isCheck"
-                                type="checkbox"
-                                onClick={this.handleClick}
-                            />
-                            Edit
-                        </label>
-                    </form>
-                    <textarea
-                        className="textarea"
-                        value={this.state.text}
-                        onChange={this.handleTextChange}
-                        disabled
+                        disabled={this.state.isDisabled ? "disabled" : false}
                     />
                 </div>
             );
         }
-    }
 }
 
 export default Edit;

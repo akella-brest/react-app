@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import '../IconText/IconText.css';
-import Icon from '../Icon/Icon.js'
 
 class IconText extends Component {
     render() {
-        const children = this.props.children;
         const texts = this.props.texts;
-        const listIconText = texts.map((text) =>{
-            if (text.type === 'a') {
-                return <a href={text}>{text}</a>
-            } else {
-                return text;
-            }
+        const listIconText = texts.map((text) => {
+            return (text.type === 'a') ?
+                <a href={text}>{text}</a> :
+                text;
         });
 
         return (
             <div className="IconText">
-                {children.map((icon, index) => {
+                {this.props.children.map((icon, index) => {
                     return <div>
                         <i className={icon} key={icon.toString()}>
                         </i> <span>{listIconText[index]}</span><br/>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Edit from './Edit/Edit.js';
 import './Tabs.css';
 
 class Tabs extends Component {
@@ -10,12 +11,12 @@ class Tabs extends Component {
             contacts: ""
         };
 
-        this.onMain = this.onMain.bind(this);
-        this.onEducation = this.onEducation.bind(this);
-        this.onContacts = this.onContacts.bind(this);
+        this.handleOnMain = this.handleOnMain.bind(this);
+        this.handleOnEducation = this.handleOnEducation.bind(this);
+        this.handleOnContacts = this.handleOnContacts.bind(this);
     }
 
-    onMain() {
+    handleOnMain() {
         this.setState({
             main: "main",
             education: "",
@@ -23,7 +24,7 @@ class Tabs extends Component {
         });
     }
 
-    onEducation() {
+    handleOnEducation() {
         this.setState({
             main: "",
             education: "education",
@@ -31,7 +32,7 @@ class Tabs extends Component {
         });
     }
 
-    onContacts() {
+    handleOnContacts() {
         this.setState({
             main: "",
             education: "",
@@ -42,9 +43,14 @@ class Tabs extends Component {
     render() {
         return (
             <div className="Tabs">
-                <p className={this.state.main} onClick={this.onMain}>Основное</p>
-                <p className={this.state.education} onClick={this.onEducation}>Образование</p>
-                <p className={this.state.contacts} onClick={this.onContacts}>Контакты</p>
+                <div className="Menu">
+                    <p id={this.state.main} onClick={this.handleOnMain}>Основное</p>
+                    <p id={this.state.education} onClick={this.handleOnEducation}>Образование</p>
+                    <p id={this.state.contacts} onClick={this.handleOnContacts}>Контакты</p>
+                </div>
+                <Edit
+                    text={this.props.text}
+                />
             </div>
         );
     }
