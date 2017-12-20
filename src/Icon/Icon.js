@@ -9,7 +9,6 @@ class Icon extends Component {
         const fullNameIcons = icons.map ((icon) => {
             return "fa fa-" + icon;
         });
-
         const listIconText = [
             this.props.listIcon.company,
             this.props.listIcon.location,
