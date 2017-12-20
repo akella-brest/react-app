@@ -50,9 +50,7 @@ class App extends Component {
                     listTabs: {
                         text: responseJson.bio
                     }
-                }, function() {
-                    // do something with new state
-                });
+                }, function() {});
             })
     }
 
