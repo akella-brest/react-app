@@ -8,30 +8,24 @@ class Edit extends Component {
             isDisabled: true,
             text: ''
         };
-
-        this.handleClick = this.handleClick.bind(this);
-        this.handleTextChange = this.handleTextChange.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({ text: this.props.text });
-    }
-
-    handleClick() {
+    handleOnClick() {
         if (this.state.isDisabled) {
             this.setState({
                 isDisabled: false,
-                text: this.state.value
+                text: this.state.text
             })
         } else {
             this.setState({
                 isDisabled: true,
-                text: this.state.value
+                text: this.state.text
             })
         }
     }
 
-    handleTextChange(e) {
+    handleOnChange(e) {
+        e.preventDefault();
         this.setState({ text: e.target.value });
     }
 
@@ -43,15 +37,14 @@ class Edit extends Component {
                             <input
                                 name="isCheck"
                                 type="checkbox"
-                                onClick={this.handleClick}
+                                onClick={(e) => this.handleOnClick(e)}
                             />
                             Edit
                         </label>
                     </form>
                     <textarea
-                        className="textarea"
-                        value={this.state.text}
-                        onChange={this.handleTextChange}
+                        onChange={(e) => this.handleOnChange(e)}
+                        value={this.state.text == '' ? this.props.text : this.state.text}
                         disabled={this.state.isDisabled ? "disabled" : false}
                     />
                 </div>
