@@ -6,9 +6,9 @@ class Tabs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            main: "main",
-            education: "",
-            contacts: ""
+            isActive: {
+                id: 0
+            }
         };
 
         this.handleOnMain = this.handleOnMain.bind(this);
@@ -18,25 +18,25 @@ class Tabs extends Component {
 
     handleOnMain() {
         this.setState({
-            main: "main",
-            education: "",
-            contacts: ""
+            isActive: {
+                id: 0
+            }
         });
     }
 
     handleOnEducation() {
         this.setState({
-            main: "",
-            education: "education",
-            contacts: ""
+            isActive: {
+                id: 1
+            }
         });
     }
 
     handleOnContacts() {
         this.setState({
-            main: "",
-            education: "",
-            contacts: "contacts"
+            isActive: {
+                id: 2
+            }
         });
     }
 
@@ -44,12 +44,14 @@ class Tabs extends Component {
         return (
             <div className="Tabs">
                 <div className="Menu">
-                    <p id={this.state.main} onClick={this.handleOnMain}>Основное</p>
-                    <p id={this.state.education} onClick={this.handleOnEducation}>Образование</p>
-                    <p id={this.state.contacts} onClick={this.handleOnContacts}>Контакты</p>
+                    <p id={this.state.isActive.id === 0 ? '0' : ''}  onClick={this.handleOnMain}>Основное</p>
+                    <p id={this.state.isActive.id === 1 ? '1' : ''} onClick={this.handleOnEducation}>Образование</p>
+                    <p id={this.state.isActive.id === 2 ? '2' : ''} onClick={this.handleOnContacts}>Контакты</p>
                 </div>
                 <Edit
-                    text={this.props.text}
+                    main={this.props.main}
+                    education={this.props.education}
+                    contacts={this.props.contacts}
                 />
             </div>
         );

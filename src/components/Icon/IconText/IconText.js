@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import '../IconText/IconText.css';
+import './IconText.css';
 
 class IconText extends Component {
+
+
     render() {
         const texts = this.props.texts;
-        const listIconText = texts.map((text) => {
-            return (text.type === 'a') ?
-                <a href={text}>{text}</a> :
-                text;
+
+        const listIconText = texts.map((text, index, texts) => {
+            if (text == null) {
+                return `email is not visible`
+            } else if (index >= 3) {
+                return (<a href={text}>{text}</a>);
+            } else {
+                return text;
+            }
         });
 
         return (

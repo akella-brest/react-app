@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Icon.css';
-import IconText from '../IconText/IconText.js';
+import IconText from './IconText/IconText';
 
 class Icon extends Component {
 
@@ -13,7 +13,7 @@ class Icon extends Component {
             this.props.listIcon.company,
             this.props.listIcon.location,
             this.props.listIcon.email,
-            this.props.listIcon.url
+            this.props.listIcon.blog
         ];
 
         return (
