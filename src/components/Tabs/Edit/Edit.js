@@ -1,35 +1,40 @@
 import React, { Component } from 'react';
 import './Edit.css';
 
+import { store } from '../../../index';
+import {
+    edit,
+    editMenu
+} from '../../../actions/actions';
+import { connect } from 'react-redux';
+
 class Edit extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isDisabled: true,
-            text: ''
-        };
-    }
-
-    handleOnClick() {
-        if (this.state.isDisabled) {
-            this.setState({
-                isDisabled: false,
-                text: this.state.text
-            })
-        } else {
-            this.setState({
-                isDisabled: true,
-                text: this.state.text
-            })
-        }
-    }
-
-    handleOnChange(e) {
-        e.preventDefault();
-        this.setState({ text: e.target.value });
-    }
-
     render() {
+        const { isDisabled } = this.props.listState.editData;
+        const { id } = this.props.listState.chooseMenu.isActive;
+        const { main, education, contacts } = this.props.listState;
+        let textArea  = {};
+        if (id === 0) {
+            textArea = <textarea
+                onChange={(e) => store.dispatch(editMenu(e.target.values))}
+                value={main}
+                disabled={isDisabled ? "disabled" : false}
+            />
+        } else if (id === 1) {
+            textArea = <textarea
+                onChange={(e) => store.dispatch(editMenu(e.target.values))}
+                value={education}
+                disabled={isDisabled ? "disabled" : false}
+            />
+        } else if (id === 2) {
+            textArea = <textarea
+                onChange={(e) => store.dispatch(editMenu(e.target.values))}
+                value={contacts}
+                disabled={isDisabled ? "disabled" : false}
+            />
+        }
+
+        console.log(isDisabled, id);
             return (
                 <div className="Edit">
                     <form>
@@ -37,19 +42,20 @@ class Edit extends Component {
                             <input
                                 name="isCheck"
                                 type="checkbox"
-                                onClick={(e) => this.handleOnClick(e)}
+                                onClick={() => store.dispatch(edit())}
                             />
                             Edit
                         </label>
                     </form>
-                    <textarea
-                        onChange={(e) => this.handleOnChange(e)}
-                        value={this.state.text == '' ? this.props.text : this.state.text}
-                        disabled={this.state.isDisabled ? "disabled" : false}
-                    />
+                    {textArea}
                 </div>
             );
         }
 }
 
-export default Edit;
+export default connect(
+    state => ({
+        listState: state
+    }),
+    dispatch => ({})
+)(Edit);

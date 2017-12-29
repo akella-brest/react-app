@@ -1,52 +1,29 @@
 import React, { Component } from 'react';
 import Edit from './Edit/Edit.js';
-import './Tabs.css';
+import '../Tabs/Tabs.css';
+
+import { store } from '../../index';
+import {
+    chooseMain,
+    chooseContacts,
+    chooseEducation
+} from '../../actions/actions';
+import { connect } from 'react-redux';
 
 class Tabs extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isActive: {
-                id: 0
-            }
-        };
-
-        this.handleOnMain = this.handleOnMain.bind(this);
-        this.handleOnEducation = this.handleOnEducation.bind(this);
-        this.handleOnContacts = this.handleOnContacts.bind(this);
-    }
-
-    handleOnMain() {
-        this.setState({
-            isActive: {
-                id: 0
-            }
-        });
-    }
-
-    handleOnEducation() {
-        this.setState({
-            isActive: {
-                id: 1
-            }
-        });
-    }
-
-    handleOnContacts() {
-        this.setState({
-            isActive: {
-                id: 2
-            }
-        });
-    }
+    handleOnMain = () => store.dispatch(chooseMain());
+    handleOnEducation = () => store.dispatch(chooseEducation());
+    handleOnContacts = () => store.dispatch(chooseContacts());
 
     render() {
+        const { id } = this.props.listState.chooseMenu.isActive;
+
         return (
             <div className="Tabs">
                 <div className="Menu">
-                    <p id={this.state.isActive.id === 0 ? '0' : ''}  onClick={this.handleOnMain}>Основное</p>
-                    <p id={this.state.isActive.id === 1 ? '1' : ''} onClick={this.handleOnEducation}>Образование</p>
-                    <p id={this.state.isActive.id === 2 ? '2' : ''} onClick={this.handleOnContacts}>Контакты</p>
+                    <p id={id === 0 ? '0' : ''} onClick={this.handleOnMain.bind(this)}>Основное</p>
+                    <p id={id === 1 ? '1' : ''} onClick={this.handleOnEducation.bind(this)}>Образование</p>
+                    <p id={id === 2 ? '2' : ''} onClick={this.handleOnContacts.bind(this)}>Контакты</p>
                 </div>
                 <Edit
                     main={this.props.main}
@@ -58,4 +35,10 @@ class Tabs extends Component {
     }
 }
 
-export default Tabs;
+export default connect(
+    state => ({
+        listState: state
+    }),
+    dispatch => ({})
+)(Tabs);
+
