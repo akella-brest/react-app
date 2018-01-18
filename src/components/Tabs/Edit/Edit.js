@@ -2,52 +2,31 @@ import React, { Component } from 'react';
 import './Edit.css';
 
 import { store } from '../../../index';
-import {
-    edit,
-    editMenu
-} from '../../../actions/actions';
+import {editData, editButton} from '../../../actions/actions';
 import { connect } from 'react-redux';
 
 class Edit extends Component {
     render() {
-        const { isDisabled } = this.props.listState.editData;
-        const { id } = this.props.listState.chooseMenu.isActive;
-        const { main, education, contacts } = this.props.listState;
-        let textArea  = {};
-        if (id === 0) {
-            textArea = <textarea
-                onChange={(e) => store.dispatch(editMenu(e.target.values))}
-                value={main}
-                disabled={isDisabled ? "disabled" : false}
-            />
-        } else if (id === 1) {
-            textArea = <textarea
-                onChange={(e) => store.dispatch(editMenu(e.target.values))}
-                value={education}
-                disabled={isDisabled ? "disabled" : false}
-            />
-        } else if (id === 2) {
-            textArea = <textarea
-                onChange={(e) => store.dispatch(editMenu(e.target.values))}
-                value={contacts}
-                disabled={isDisabled ? "disabled" : false}
-            />
-        }
+        const { isDisabled } = this.props.editButton;
+        const { text, name } = this.props;
 
-        console.log(isDisabled, id);
             return (
                 <div className="Edit">
-                    <form>
-                        <label>
-                            <input
-                                name="isCheck"
-                                type="checkbox"
-                                onClick={() => store.dispatch(edit())}
-                            />
-                            Edit
-                        </label>
-                    </form>
-                    {textArea}
+                    <div id="toggles">
+                        <input
+                            type="checkbox"
+                            name="checkbox1"
+                            id="checkbox1"
+                            className="ios-toggle"
+                            onClick={() => store.dispatch(editButton())}
+                        />
+                        <label for="checkbox1" class="checkbox-label" data-off="Not edit" data-on="Edit"></label>
+                    </div>
+                    <textarea
+                        onChange={(e) => store.dispatch(editData(name, e.target.value))}
+                        value={text}
+                        disabled={isDisabled ? "disabled" : false}
+                    />
                 </div>
             );
         }
@@ -55,7 +34,7 @@ class Edit extends Component {
 
 export default connect(
     state => ({
-        listState: state
-    }),
-    dispatch => ({})
+        editButton: state.editButton,
+        editData: state.text
+    })
 )(Edit);

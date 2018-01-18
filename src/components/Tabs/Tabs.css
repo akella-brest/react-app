@@ -1,26 +1,53 @@
-.Tabs .Menu {
-    margin: 1.5% 15% 0 26%;
-    padding: 0;
-    height: 80%;
-    display: flex;
+.Menu {
     border-bottom: 1px solid #bababa;
+    height: 35px;
+    width: 565px;
+    margin: 0 0 0 250px;
 }
 
-.Tabs p {
-    font-size: 14px;
-    padding: 0 10px 15px 10px;
+.react-tabs__tab-list {
+    border-bottom: 1px solid #aaa;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+.react-tabs__tab {
+    display: inline-block;
+    border-bottom: none;
+    bottom: -1px;
+    position: relative;
+    list-style: none;
+    padding: 6px 12px;
     cursor: pointer;
-    color: #5c5c5c;
+    color: gray;
 }
 
-.Tabs p:hover {
-    border-bottom: 2px solid #e9e9e9;
+.react-tabs__tab:hover {
+    border-bottom: 2px solid #bebebe;
+    padding-bottom: 10px;
 }
 
-.Tabs [id*='0'], [id*='1'], [id*='2'] {
+.react-tabs__tab--selected {
+    background: #fff;
+    color: black;
+    padding-bottom: 10px;
     border-bottom: 2px solid #eb6700;
-    font-weight: 600;
-    transition: 0.5s;
-    transition-property: all;
+}
 
+.react-tabs__tab--selected:hover {
+    border-bottom: 2px solid #eb6700;
+    padding-bottom: 10px;
+}
+
+.react-tabs__tab--disabled {
+    color: GrayText;
+    cursor: default;
+}
+
+.react-tabs__tab-panel {
+    display: none;
+}
+
+.react-tabs__tab-panel--selected {
+    display: block;
 }

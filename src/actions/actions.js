@@ -1,9 +1,7 @@
 export const LOADING_DATA = 'LOADING_DATA'
-export const CHOOSE_MAIN = 'CHOOSE_MAIN'
-export const CHOOSE_EDUCATION = 'CHOOSE_EDUCATION'
-export const CHOOSE_CONTACTS = 'CHOOSE_CONTACTS'
-export const EDIT = 'EDIT'
-export const EDIT_MENU = 'EDIT_MENU'
+export const CHECK_CLICKED = 'CHECK_CLICKED'
+export const EDIT_BUTTON = 'EDIT_BUTTON' //button
+export const EDIT_DATA = 'EDIT_DATA' //edit data text
 
 export function receiveDataProfile(data) {
     return {
@@ -12,42 +10,23 @@ export function receiveDataProfile(data) {
     }
 }
 
-export function chooseMain() {
+export function checkClicked(name, text) {
     return {
-        type: CHOOSE_MAIN,
-        isActive: {
-            id: 0
-        }
+        type: CHECK_CLICKED,
+        name
     }
 }
 
-export function chooseEducation() {
+export function editButton() {
     return {
-        type: CHOOSE_EDUCATION,
-        isActive: {
-            id: 1
-        }
+        type: EDIT_BUTTON
     }
 }
 
-export function chooseContacts() {
+export function editData(name, data) {
     return {
-        type: CHOOSE_CONTACTS,
-        isActive: {
-            id: 2
-        }
-    }
-}
-
-export function edit() {
-    return {
-        type: EDIT
-    }
-}
-
-export function editMenu(main) {
-    return {
-        type: EDIT_MENU,
-        main
+        type: EDIT_DATA,
+        name,
+        data
     }
 }

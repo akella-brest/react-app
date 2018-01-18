@@ -1,17 +1,13 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import {
     LOADING_DATA,
-    CHOOSE_MAIN,
-    CHOOSE_EDUCATION,
-    CHOOSE_CONTACTS,
-    EDIT,
-    EDIT_MENU
+    CHECK_CLICKED,
+    EDIT_BUTTON,
+    EDIT_DATA
 } from '../actions/actions';
 
-
-const initialStateData = [];
-
-function loadingData(state = initialStateData, action) {
+function loadingData(state = [], action) {
     switch(action.type) {
         case LOADING_DATA:
             return action.data;
@@ -19,20 +15,18 @@ function loadingData(state = initialStateData, action) {
     return state;
 }
 
-const initialStateMenu = {
-    isActive: {
-        id: 0
-    }
-};
-
-function chooseMenu(state = initialStateMenu, action) {
+function showText (state = [], action) {
     switch(action.type) {
-        case CHOOSE_MAIN:
-            return action;
-        case CHOOSE_EDUCATION:
-            return action;
-        case CHOOSE_CONTACTS:
-            return action;
+        case CHECK_CLICKED:
+            return {
+                ...state,
+                [action.name]: action.data
+            };
+        case EDIT_DATA:
+            return  {
+                ...state,
+                [action.name]: action.data
+            };
         default:
             return state;
     }
@@ -43,16 +37,12 @@ const initialStateEditData = {
 };
 
 
-function editData(state = initialStateEditData, action) {
+function editButton(state = initialStateEditData, action) {
     switch(action.type) {
-        case EDIT:
-            return Object.assign({}, state, {
-                isDisabled: !state.isDisabled,
-                main: state.main
-            });
-        case EDIT_MENU:
-            return {
-                main: action.main
+        case EDIT_BUTTON:
+            return  {
+                ...state,
+                isDisabled: !state.isDisabled
             };
         default:
             return state;
@@ -60,7 +50,8 @@ function editData(state = initialStateEditData, action) {
 }
 
 export default combineReducers({
-    loadingData,
-    chooseMenu,
-    editData
+    routing: routerReducer,
+    data: loadingData,
+    text: showText,
+    editButton: editButton
 });

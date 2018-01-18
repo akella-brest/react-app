@@ -1,44 +1,52 @@
 import React, { Component } from 'react';
 import Edit from './Edit/Edit.js';
 import '../Tabs/Tabs.css';
+import { Link } from 'react-router-dom';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+//import 'react-tabs/style/react-tabs.css';
 
 import { store } from '../../index';
-import {
-    chooseMain,
-    chooseContacts,
-    chooseEducation
-} from '../../actions/actions';
+import {checkClicked, editData} from '../../actions/actions';
 import { connect } from 'react-redux';
 
-class Tabs extends Component {
-    handleOnMain = () => store.dispatch(chooseMain());
-    handleOnEducation = () => store.dispatch(chooseEducation());
-    handleOnContacts = () => store.dispatch(chooseContacts());
-
+class _Tabs extends Component {
     render() {
-        const { id } = this.props.listState.chooseMenu.isActive;
+        const { textOne, textTwo, textThree } = this.props.listText;
 
         return (
-            <div className="Tabs">
-                <div className="Menu">
-                    <p id={id === 0 ? '0' : ''} onClick={this.handleOnMain.bind(this)}>Основное</p>
-                    <p id={id === 1 ? '1' : ''} onClick={this.handleOnEducation.bind(this)}>Образование</p>
-                    <p id={id === 2 ? '2' : ''} onClick={this.handleOnContacts.bind(this)}>Контакты</p>
-                </div>
-                <Edit
-                    main={this.props.main}
-                    education={this.props.education}
-                    contacts={this.props.contacts}
-                />
-            </div>
+            <Tabs>
+                <TabList className='Menu'>
+                    <Tab onClick={(e) => store.dispatch(checkClicked(e.target.id))}>Main</Tab>
+                    <Tab onClick={(e) => store.dispatch(checkClicked(e.target.id))}>Education</Tab>
+                    <Tab onClick={(e) => store.dispatch(checkClicked(e.target.id))}>Contacts</Tab>
+                </TabList>
+
+                <TabPanel>
+                    <Edit
+                        text={textOne}
+                        name='textOne'
+                    />
+                </TabPanel>
+                <TabPanel>
+                    <Edit
+                        text={textTwo}
+                        name='textTwo'
+                    />
+                </TabPanel>
+                <TabPanel>
+                    <Edit
+                        text={textThree}
+                        name='texThree'
+                    />
+                </TabPanel>
+            </Tabs>
         );
     }
 }
 
 export default connect(
     state => ({
-        listState: state
-    }),
-    dispatch => ({})
-)(Tabs);
+        listText: state.text
+    })
+)(_Tabs);
 

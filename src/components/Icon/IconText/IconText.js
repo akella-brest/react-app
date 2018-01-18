@@ -7,7 +7,7 @@ class IconText extends Component {
     render() {
         const texts = this.props.texts;
 
-        const listIconText = texts.map((text, index, texts) => {
+        const listIconText = texts.map((text, index) => {
             if (text == null) {
                 return `email is not visible`
             } else if (index >= 3) {
