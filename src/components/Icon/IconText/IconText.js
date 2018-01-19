@@ -2,29 +2,30 @@ import React, { Component } from 'react';
 import './IconText.css';
 
 class IconText extends Component {
-
-
     render() {
-        const texts = this.props.texts;
+        const { texts } = this.props;
 
-        const listIconText = texts.map((text, index) => {
-            if (text == null) {
-                return `email is not visible`
-            } else if (index >= 3) {
-                return (<a href={text}>{text}</a>);
-            } else {
+        if (texts[0] != undefined) {
+            var listIconText = texts.map((text) => {
+                if (text === null) {
+                    return `email is not visible`;
+                } else if (text.indexOf('http') != -1) {
+                    return (<a href={text}>{text}</a>);
+                }
                 return text;
-            }
-        });
+            });
+
+            var IconText = this.props.children.map((icon, index) => {
+                return <div key={index}>
+                    <i className={icon}>
+                    </i><span>{listIconText[index]}</span><br/>
+                </div>
+            })
+        }
 
         return (
             <div className="IconText">
-                {this.props.children.map((icon, index) => {
-                    return <div>
-                        <i className={icon} key={icon.toString()}>
-                        </i> <span>{listIconText[index]}</span><br/>
-                    </div>
-                })}
+                {IconText}
             </div>
         );
     }

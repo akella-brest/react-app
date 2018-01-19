@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Edit.css';
 
 import { store } from '../../../index';
-import {editData, editButton} from '../../../actions/actions';
+import { editData, editButton } from '../../../actions/actions';
 import { connect } from 'react-redux';
 
 class Edit extends Component {
@@ -20,7 +20,7 @@ class Edit extends Component {
                             className="ios-toggle"
                             onClick={() => store.dispatch(editButton())}
                         />
-                        <label for="checkbox1" class="checkbox-label" data-off="Not edit" data-on="Edit"></label>
+                        <label htmlFor="checkbox1" className="checkbox-label" data-off="Not edit" data-on="Edit"></label>
                     </div>
                     <textarea
                         onChange={(e) => store.dispatch(editData(name, e.target.value))}

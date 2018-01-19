@@ -1,12 +1,29 @@
-export const LOADING_DATA = 'LOADING_DATA'
+export const REQUEST_DATA = 'REQUEST_DATA'
+export const RECEIVE_DATA = 'RECEIVE_DATA'
 export const CHECK_CLICKED = 'CHECK_CLICKED'
 export const EDIT_BUTTON = 'EDIT_BUTTON' //button
 export const EDIT_DATA = 'EDIT_DATA' //edit data text
 
-export function receiveDataProfile(data) {
+export function requestData(data) {
     return {
-        type: LOADING_DATA,
+        type: REQUEST_DATA,
         data
+    }
+}
+
+export function receiveData(data, json) {
+    return {
+        type: RECEIVE_DATA,
+        data: json
+    }
+}
+
+export function fetchData(data) {
+    return dispatch => {
+        dispatch(requestData(data))
+        return fetch(`https://api.github.com/users/${data}`)
+            .then((response) => response.json())
+            .then((responseJson) => dispatch(receiveData(data, responseJson)))
     }
 }
 

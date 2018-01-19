@@ -5,7 +5,7 @@ import IconText from './IconText/IconText';
 class Icon extends Component {
 
     render() {
-        const icons = this.props.icons;
+        const { icons } = this.props;
         const fullNameIcons = icons.map ((icon) => {
             return "fa fa-" + icon;
         });

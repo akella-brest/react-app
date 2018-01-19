@@ -2,26 +2,22 @@ import React, { Component } from 'react';
 import './App.css';
 import Icon from './Icon/Icon.js';
 import Profile from './Profile/Profile.js';
-import Tabs from './Tabs/Tabs.js';
+import TabsElement from './Tabs/Tabs.js';
 
 import { store } from '../index';
-import { receiveDataProfile } from '../actions/actions';
+import { fetchData } from '../actions/actions';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
 
     componentDidMount() {
-        return fetch('https://api.github.com/users/gaearon')
-            .then((response) => response.json())
-            .then((responseJson) => {
-                store.dispatch(receiveDataProfile(responseJson));
-            });
+        store.dispatch(fetchData('gaearon'));
     }
 
     render() {
         const icons = ['users', 'map-marker', 'envelope', 'link'];
-        const {avatar_url, name, login, bio, company, location, email, blog} = this.props.listData;
+        const {avatar_url, name, login, bio, company, location, email, blog} = this.props.listData.data;
 
         return (
             <div className="App">
@@ -33,7 +29,7 @@ class App extends Component {
                         information={bio}
                     />
 
-                    <Tabs
+                    <TabsElement
                         text={bio}
                     />
                         {/*<Route exact path='/main' component={Tabs}/>*/}

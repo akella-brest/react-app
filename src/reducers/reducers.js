@@ -1,18 +1,33 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import {
-    LOADING_DATA,
+    REQUEST_DATA,
+    RECEIVE_DATA,
     CHECK_CLICKED,
     EDIT_BUTTON,
-    EDIT_DATA
+    EDIT_DATA,
 } from '../actions/actions';
 
-function loadingData(state = [], action) {
-    switch(action.type) {
-        case LOADING_DATA:
-            return action.data;
+function loadingData (state = {
+        isFetching: false,
+        didInvalidate: false,
+        data: []
+}, action) {
+    switch (action.type) {
+        case REQUEST_DATA:
+            return Object.assign({}, state, {
+                isFetching: true,
+                didInvalidate: false
+            })
+        case RECEIVE_DATA:
+            return Object.assign({}, state, {
+                isFetching: false,
+                didInvalidate: false,
+                data: action.data
+            })
+        default:
+            return state
     }
-    return state;
 }
 
 function showText (state = [], action) {
@@ -32,12 +47,9 @@ function showText (state = [], action) {
     }
 }
 
-const initialStateEditData = {
+function editButton(state = {
     isDisabled: true
-};
-
-
-function editButton(state = initialStateEditData, action) {
+}, action) {
     switch(action.type) {
         case EDIT_BUTTON:
             return  {

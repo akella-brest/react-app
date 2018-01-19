@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import Edit from './Edit/Edit.js';
 import '../Tabs/Tabs.css';
-import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-//import 'react-tabs/style/react-tabs.css';
 
 import { store } from '../../index';
-import {checkClicked, editData} from '../../actions/actions';
+import { checkClicked } from '../../actions/actions';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-class _Tabs extends Component {
+class TabsElement extends Component {
     render() {
         const { textOne, textTwo, textThree } = this.props.listText;
 
@@ -48,5 +47,5 @@ export default connect(
     state => ({
         listText: state.text
     })
-)(_Tabs);
+)(TabsElement);
 
