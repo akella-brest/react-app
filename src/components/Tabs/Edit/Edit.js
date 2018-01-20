@@ -4,8 +4,19 @@ import './Edit.css';
 import { store } from '../../../index';
 import { editData, editButton } from '../../../actions/actions';
 import { connect } from 'react-redux';
+import PropTypes from "prop-types";
 
 class Edit extends Component {
+
+    static propTypes = {
+        editButton: PropTypes.shape({
+            isDisabled: PropTypes.bool
+        }),
+        editData: PropTypes.array,
+        text: PropTypes.string,
+        name: PropTypes.string
+    };
+
     render() {
         const { isDisabled } = this.props.editButton;
         const { text, name } = this.props;

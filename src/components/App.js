@@ -3,6 +3,7 @@ import './App.css';
 import Icon from './Icon/Icon.js';
 import Profile from './Profile/Profile.js';
 import TabsElement from './Tabs/Tabs.js';
+import PropTypes from 'prop-types';
 
 import { store } from '../index';
 import { fetchData } from '../actions/actions';
@@ -11,13 +12,26 @@ import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
 
+    static propTypes = {
+        listData: PropTypes.shape({
+            avatar_url: PropTypes.string,
+            name: PropTypes.string,
+            login: PropTypes.string,
+            bio: PropTypes.string,
+            company: PropTypes.string,
+            location: PropTypes.string,
+            email: PropTypes.string,
+            blog: PropTypes.string
+        })
+    };
+
     componentDidMount() {
         store.dispatch(fetchData('gaearon'));
     }
 
     render() {
         const icons = ['users', 'map-marker', 'envelope', 'link'];
-        const {avatar_url, name, login, bio, company, location, email, blog} = this.props.listData.data;
+        const { avatar_url, name, login, bio, company, location, email, blog } = this.props.listData.data;
 
         return (
             <div className="App">
@@ -42,7 +56,6 @@ class App extends Component {
         );
     }
 }
-
 
 export default connect(
     state => ({

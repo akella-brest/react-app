@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import './Profile.css';
+import PropTypes from "prop-types";
 
 class Profile extends Component {
+
+    static propTypes = {
+        url: PropTypes.string,
+        name: PropTypes.string,
+        nickname: PropTypes.string,
+        information: PropTypes.string,
+    };
+
     render() {
-        const {url, name, nickname, information} = this.props;
+        const { url, name, nickname, information } = this.props;
 
         return (
             <div className="Profile">
