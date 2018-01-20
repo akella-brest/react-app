@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './IconText.css';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 class IconText extends Component {
 

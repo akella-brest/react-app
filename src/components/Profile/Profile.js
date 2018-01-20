@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Profile.css';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 class Profile extends Component {
 

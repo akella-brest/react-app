@@ -4,7 +4,7 @@ import './Edit.css';
 import { store } from '../../../index';
 import { editData, editButton } from '../../../actions/actions';
 import { connect } from 'react-redux';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 class Edit extends Component {
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Icon.css';
 import IconText from './IconText/IconText';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 class Icon extends Component {
 
