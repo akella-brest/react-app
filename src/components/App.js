@@ -30,29 +30,41 @@ class App extends Component {
     }
 
     render() {
+        const { isFetching } = this.props.listData;
+
         const icons = ['users', 'map-marker', 'envelope', 'link'];
         const { avatar_url, name, login, bio, company, location, email, blog } = this.props.listData.data;
-
+        console.log(isFetching);
         return (
-            <div className="App">
-                {/*<Switch>*/}
-                    <Profile
-                        url={avatar_url}
-                        name={name}
-                        nickname={login}
-                        information={bio}
-                    />
 
-                    <TabsElement
-                        text={bio}
-                    />
-                        {/*<Route exact path='/main' component={Tabs}/>*/}
-                    <Icon
-                        icons={icons}
-                        listIcon={{company, location, email, blog}}
-                    />
-                {/*</Switch>*/}
-            </div>
+            isFetching ?
+                <div id="bowlG">
+                    <div id="bowl_ringG">
+                        <div class="ball_holderG">
+                            <div class="ballG">
+                            </div>
+                        </div>
+                    </div>
+                </div> :
+                <div className="App">
+                    {/*<Switch>*/}
+                        <Profile
+                            url={avatar_url}
+                            name={name}
+                            nickname={login}
+                            information={bio}
+                        />
+
+                        <TabsElement
+                            text={bio}
+                        />
+                            {/*<Route exact path='/main' component={Tabs}/>*/}
+                        <Icon
+                            icons={icons}
+                            listIcon={{company, location, email, blog}}
+                        />
+                    {/*</Switch>*/}
+                </div>
         );
     }
 }
