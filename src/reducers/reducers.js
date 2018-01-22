@@ -10,19 +10,16 @@ import {
 
 function loadingData (state = {
         isFetching: false,
-        didInvalidate: false,
-        data: []
+        data: {}
 }, action) {
     switch (action.type) {
         case REQUEST_DATA:
             return Object.assign({}, state, {
-                isFetching: true,
-                didInvalidate: false
+                isFetching: true
             })
         case RECEIVE_DATA:
             return Object.assign({}, state, {
                 isFetching: false,
-                didInvalidate: false,
                 data: action.data
             })
         default:
@@ -30,7 +27,7 @@ function loadingData (state = {
     }
 }
 
-function showText (state = [], action) {
+function showText (state = {}, action) {
     switch(action.type) {
         case CHECK_CLICKED:
             return {
@@ -52,10 +49,9 @@ function editButton(state = {
 }, action) {
     switch(action.type) {
         case EDIT_BUTTON:
-            return  {
-                ...state,
+            return  Object.assign({}, state, {
                 isDisabled: !state.isDisabled
-            };
+            });
         default:
             return state;
     }

@@ -12,9 +12,10 @@ class Edit extends Component {
         editButton: PropTypes.shape({
             isDisabled: PropTypes.bool
         }),
-        editData: PropTypes.array,
-        text: PropTypes.string,
-        name: PropTypes.string
+        editData: PropTypes.shape({
+            text: PropTypes.string,
+            name: PropTypes.string
+        })
     };
 
     render() {

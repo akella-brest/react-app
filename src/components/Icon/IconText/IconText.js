@@ -14,7 +14,7 @@ class IconText extends Component {
         var listIconText = texts.map((text) => {
             if (text === null) {
                 return `email is not visible`;
-            } else if (text != undefined && text.indexOf('http') != -1) {
+            } else if (text !== undefined && text.indexOf('http') !== -1) {
                 return (<a href={text}>{text}</a>);
             }
             return text;

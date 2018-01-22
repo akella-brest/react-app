@@ -6,16 +6,16 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { store } from '../../index';
 import { checkClicked } from '../../actions/actions';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class TabsElement extends Component {
 
     static propTypes = {
-        listText: PropTypes.array,
-        textOne: PropTypes.string,
-        textTwo: PropTypes.string,
-        textThree: PropTypes.string
+        listText: PropTypes.shape({
+            textOne: PropTypes.string,
+            textTwo: PropTypes.string,
+            textThree: PropTypes.string
+        })
     };
 
     render() {

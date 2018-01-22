@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import { store } from '../index';
 import { fetchData } from '../actions/actions';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
 
@@ -34,36 +33,32 @@ class App extends Component {
 
         const icons = ['users', 'map-marker', 'envelope', 'link'];
         const { avatar_url, name, login, bio, company, location, email, blog } = this.props.listData.data;
-        console.log(isFetching);
+
         return (
 
             isFetching ?
                 <div id="bowlG">
                     <div id="bowl_ringG">
-                        <div class="ball_holderG">
-                            <div class="ballG">
+                        <div className="ball_holderG">
+                            <div className="ballG">
                             </div>
                         </div>
                     </div>
                 </div> :
                 <div className="App">
-                    {/*<Switch>*/}
                         <Profile
                             url={avatar_url}
                             name={name}
                             nickname={login}
                             information={bio}
                         />
-
                         <TabsElement
                             text={bio}
                         />
-                            {/*<Route exact path='/main' component={Tabs}/>*/}
                         <Icon
                             icons={icons}
                             listIcon={{company, location, email, blog}}
                         />
-                    {/*</Switch>*/}
                 </div>
         );
     }
