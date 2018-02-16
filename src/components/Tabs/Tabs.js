@@ -5,21 +5,18 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import { store } from '../../index';
 import { checkClicked } from '../../actions/actions';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class TabsElement extends Component {
 
     static propTypes = {
-        listText: PropTypes.shape({
-            textOne: PropTypes.string,
-            textTwo: PropTypes.string,
-            textThree: PropTypes.string
-        })
+        textOne: PropTypes.string,
+        textTwo: PropTypes.string,
+        textThree: PropTypes.string
     };
 
     render() {
-        const { textOne, textTwo, textThree } = this.props.listText;
+        const { textOne, textTwo, textThree, isDisabled } = this.props;
 
         return (
             <Tabs>
@@ -33,18 +30,21 @@ class TabsElement extends Component {
                     <Edit
                         text={textOne}
                         name='textOne'
+                        isDisabled={isDisabled}
                     />
                 </TabPanel>
                 <TabPanel>
                     <Edit
                         text={textTwo}
                         name='textTwo'
+                        isDisabled={isDisabled}
                     />
                 </TabPanel>
                 <TabPanel>
                     <Edit
                         text={textThree}
                         name='texThree'
+                        isDisabled={isDisabled}
                     />
                 </TabPanel>
             </Tabs>
@@ -52,9 +52,5 @@ class TabsElement extends Component {
     }
 }
 
-export default connect(
-    state => ({
-        listText: state.text
-    })
-)(TabsElement);
+export default TabsElement;
 

@@ -25,7 +25,7 @@ class IconText extends Component {
                 <i className={icon}>
                 </i><span>{listIconText[index]}</span><br/>
             </div>
-        })
+        });
 
         return (
             <div className="IconText">

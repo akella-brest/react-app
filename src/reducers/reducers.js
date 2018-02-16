@@ -16,12 +16,12 @@ function loadingData (state = {
         case REQUEST_DATA:
             return Object.assign({}, state, {
                 isFetching: true
-            })
+            });
         case RECEIVE_DATA:
             return Object.assign({}, state, {
                 isFetching: false,
                 data: action.data
-            })
+            });
         default:
             return state
     }
@@ -30,15 +30,13 @@ function loadingData (state = {
 function showText (state = {}, action) {
     switch(action.type) {
         case CHECK_CLICKED:
-            return {
-                ...state,
-                [action.name]: action.data
-            };
+            return Object.assign({}, state, {
+                [action.elementName]: action.data
+            });
         case EDIT_DATA:
-            return  {
-                ...state,
-                [action.name]: action.data
-            };
+            return  Object.assign({}, state, {
+                [action.elementName]: action.data
+            });
         default:
             return state;
     }

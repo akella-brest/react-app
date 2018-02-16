@@ -3,24 +3,18 @@ import './Edit.css';
 
 import { store } from '../../../index';
 import { editData, editButton } from '../../../actions/actions';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 class Edit extends Component {
 
     static propTypes = {
-        editButton: PropTypes.shape({
-            isDisabled: PropTypes.bool
-        }),
-        editData: PropTypes.shape({
-            text: PropTypes.string,
-            name: PropTypes.string
-        })
+        isDisabled: PropTypes.bool,
+        text: PropTypes.string,
+        name: PropTypes.string
     };
 
     render() {
-        const { isDisabled } = this.props.editButton;
-        const { text, name } = this.props;
+        const { isDisabled, text, name } = this.props;
 
             return (
                 <div className="Edit">
@@ -32,7 +26,8 @@ class Edit extends Component {
                             className="ios-toggle"
                             onClick={() => store.dispatch(editButton())}
                         />
-                        <label htmlFor="checkbox1" className="checkbox-label" data-off="Not edit" data-on="Edit"></label>
+                        <label htmlFor="checkbox1" className="checkbox-label" data-off="Not edit" data-on="Edit">
+                        </label>
                     </div>
                     <textarea
                         onChange={(e) => store.dispatch(editData(name, e.target.value))}
@@ -44,9 +39,4 @@ class Edit extends Component {
         }
 }
 
-export default connect(
-    state => ({
-        editButton: state.editButton,
-        editData: state.text
-    })
-)(Edit);
+export default Edit;

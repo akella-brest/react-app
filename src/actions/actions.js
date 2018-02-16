@@ -40,10 +40,10 @@ export function editButton() {
     }
 }
 
-export function editData(name, data) {
+export function editData(elementName, data) {
     return {
         type: EDIT_DATA,
-        name,
+        elementName,
         data
     }
 }
